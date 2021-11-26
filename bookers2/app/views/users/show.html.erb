@@ -1,0 +1,21 @@
+<%= render 'books/new', book: @book, user: @user %>
+<div>
+  <h3><%= @user.name %></h3>
+  <%= attachment_image_tag @user, :profile_image, :fill, 63, 63, format: 'jpeg', fallback: "no_image.jpg" %>
+
+  <% if @user.id == current_user.id %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<% @books.each do |book| %>
+<div>
+  <!--く%= attachment_image_tag post_image, :image %>-->
+  <!--<p>投稿ユーザー画像：く%= image_tag('sample-author1.jpg') %></p>-->
+  <%= link_to book_path(book.id) do %>
+    <p>ショップ名：<%= book.title %></p>
+  <% end %>
+  <p>説明：<%= book.body %></p>
+  <p>ユーザーネーム：<%= book.user.name %></p>
+</div>
+<% end %>

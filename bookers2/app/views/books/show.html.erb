@@ -1,0 +1,11 @@
+<%= render 'books/new', book: @book, user: @user %>
+<div>
+  <h1>Show</h1>
+  <p><%= @book.user.name %></p>
+  <p><%= @book.title %></p>
+  <p><%= @book.body %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "edit", edit_book_path(@book) %>
+    <%= link_to "delete", book_path(@book), method: :delete %>
+  <% end %>
+</div>

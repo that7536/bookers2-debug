@@ -1,0 +1,17 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+<%= render 'books/new', book: @book, user: @user %>
+<% @books.each do |book| %>
+<div>
+  <%= attachment_image_tag book.user, :profile_image, :fill, 63, 63, fallback: "no_image.jpg" %>
+  <%= link_to book_path(book.id) do %>
+    <p>title:<%= book.title %></p>
+  <% end %>
+  <p>body:<%= book.body %></p>
+  <p>name:<%= book.user.name %></p>
+</div>
+<% end %>
