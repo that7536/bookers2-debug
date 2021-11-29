@@ -1,11 +1,36 @@
-<%= render 'books/new', book: @book, user: @user %>
-<div>
-  <h1>Show</h1>
-  <p><%= @book.user.name %></p>
-  <p><%= @book.title %></p>
-  <p><%= @book.body %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "edit", edit_book_path(@book) %>
-    <%= link_to "delete", book_path(@book), method: :delete %>
-  <% end %>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'books/new', book: @book, user: @user %>
+    </div>
+    <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to user_path(@user.id) do %>
+                <%= attachment_image_tag @books.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg" %>
+                <%= @books.user.name %>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to book_path(@books.id) do %>
+                <%= @books.title %>
+              <% end %>
+            </td>
+            <td><%= @books.body %></td>
+            <% if @books.user.id == current_user.id %>
+              <td>
+                <%= link_to "Edit", edit_book_path(@books.id) %>
+              </td>
+              <td>
+                <%= link_to "Destroy", book_path(@books), method: :delete %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

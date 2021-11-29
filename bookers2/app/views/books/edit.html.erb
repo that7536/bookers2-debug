@@ -1,9 +1,35 @@
-<h1>Editing Book</h1>
-
-<%= form_with model: @book, local:true do |f| %>
-  <label for=inputTitle>Title</label>
-  <%= f.text_field :title, autofocus: true, id:"inputTitle" %>
-  <label for="inputBody">Opinion</label>
-  <%= f.text_area :book, autofocus: true, id:"inputBody" %>
-  <%= f.submit "Update Book" %>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this obj from being saved:
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
 <% end %>
+
+<p id="notice"></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-mg-5 px-5 px-sm-0 mx-auto">
+      <h1>Editing Book</h1>
+      <%= form_with model: @book, local:true do |f| %>
+        <div class="form-group">
+          <label for=inputTitle>Title</label>
+          <%= f.text_field :title, autofocus: true, id:"inputTitle" %>
+        </div>
+        <div class="form-group">
+          <label for="inputBody">Opinion</label>
+      (    <%= f.text_area :body, autofocus: true, id:"inputBody" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Update Book" %>
+        </div>
+      <% end %>
+      <a>
+        <%= link_to "Show", book_path(@book.id) %>
+        |
+        <%= link_to "Back", books_path%>
+      </a>
+    </div>
+  </div>
+</div>
+
+
