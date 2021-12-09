@@ -1,0 +1,4 @@
+$("#book_comment_<%= @book.id %>").html("<%= j(render 'book_comments/comment-btn', book: @book) %>");
+<!--↑は作成されたコメントを一覧に追加する記述-->
+$("#book_comment_form_btn_<%= @book.id %>").html("<%= j(render 'book_comments/comment_form-btn',book: @book, book_comment: @book_comment) %>");
+<!--↑はコメント作成後にフォームの中の値を殻にするための記述-->
